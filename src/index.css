@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    scroll-behavior: smooth;
+}
+.active, .nav-link:hover {
+    @apply text-main;
+}
+*::selection {
+    color: #fff;
+    background-color: #0aad0a;
+}
+
+.main-layout {
+    @apply flex flex-wrap gap-y-3
+}
+.product .btn {
+transition: transform 1s, opacity 1s;
+transform: translateY(100%);
+opacity: 0;
+}
+.product:hover .btn {
+    opacity: 1;
+    transform: translateY(0%);
+}
