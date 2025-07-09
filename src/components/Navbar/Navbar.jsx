@@ -1,13 +1,16 @@
 import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/freshcart-logo.svg";
+import darkLogo from "../../assets/images/supermarket-shopping-cart.png"
 import { tokenContext } from "../../context/tokenContext";
 import { cartContext } from "../../context/cartContext";
+import { themeContext } from "../../context/themeContext";
 
 export default function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { isDark, toggleTheme } = useContext(themeContext);
 
   const { token, setToken } = useContext(tokenContext);
   const { numOfCartItems } = useContext(cartContext);
@@ -24,7 +27,8 @@ export default function Navbar() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex gap-3 items-center justify-between w-full md:w-auto">
           <Link to="/" className="flex items-center">
-            <img src={logo} width="200px" alt="FreshCart Logo" />
+          {isDark ? <img src={darkLogo} width="100px" alt="FreshCart Logo" /> : <img src={logo} width="200px" alt="FreshCart Logo" />}
+        
           </Link>
           <button
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -87,6 +91,15 @@ export default function Navbar() {
                 <NavLink to="wishlist" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
                   <i className="fa-solid fa-heart fa-lg"></i>
                 </NavLink>
+              </li>
+              <li>
+                      <button
+        onClick={toggleTheme}
+        className="text-xl"
+        title="Toggle Theme"
+      >
+        {isDark ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>}
+      </button>
               </li>
             </ul>
           )}

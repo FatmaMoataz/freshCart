@@ -9,9 +9,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CartContextProvider from './context/cartContext.jsx'
 import WishlistContextProvider from './context/wishlistContext.jsx'
+import { ThemeProvider } from './context/themeContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <ThemeProvider>
         <TokenContextProvider>
           <WishlistContextProvider>
           <CartContextProvider>
@@ -22,5 +24,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </WishlistContextProvider>
 
         </TokenContextProvider>
+        </ThemeProvider>
   </React.StrictMode>,
 )
