@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex gap-3 items-center justify-between w-full md:w-auto">
           <Link to="/" className="flex items-center">
-          {isDark ? <img src={darkLogo} width="100px" alt="FreshCart Logo" /> : <img src={logo} width="200px" alt="FreshCart Logo" />}
+          {isDark ? <img src={darkLogo} width="90px" alt="FreshCart Logo" /> : <img src={logo} width="200px" alt="FreshCart Logo" />}
         
           </Link>
           <button

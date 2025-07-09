@@ -7,6 +7,12 @@ export let wishlistContext = createContext()
 export default function WishlistContextProvider({children}) {
  
  const wishlist_API = 'https://ecommerce.routemisr.com/api/v1/wishlist'
+ const getHeaders = () => {
+  return {
+    token: localStorage.getItem("userToken")
+  };
+};
+
  const headers = {
     token : localStorage.getItem("userToken")
   }
@@ -14,7 +20,7 @@ export default function WishlistContextProvider({children}) {
   const [wishlist, setWishlist] = useState(null)
 
 async function addToWishlist(productId) {
-    let {data} = await axios.post(wishlist_API, {productId}, {headers})
+    let {data} = await axios.post(wishlist_API, {productId}, { headers: getHeaders() })
     if(data.status == "success") {
         setNumOfWishlistItems(data.numOfWishlistItems)
         toast("Product added to wishlist successfully!",{type:"success", theme:"dark", position:"bottom-right"});
@@ -23,7 +29,7 @@ async function addToWishlist(productId) {
       setWishlist(updatedWishlist);
  }
  async function removeFromWishlist(id) {
-    const {data} = await axios.delete(`${wishlist_API}/${id}`, {headers})
+    const {data} = await axios.delete(`${wishlist_API}/${id}`,{ headers: getHeaders() })
     if(data.status == "success") {
       setNumOfWishlistItems(data.numOfWishlistItems)
        toast("Product removed from wishlist successfully!",{type:"success", theme:"dark", position:"bottom-right"});
@@ -32,7 +38,7 @@ async function addToWishlist(productId) {
     return data   
  }
  async function getWishlist() {
-    const {data} = await axios.get(wishlist_API, {headers})
+    const {data} = await axios.get(wishlist_API,{ headers: getHeaders() } )
     if(data.status == "success") {
       setNumOfWishlistItems(data.numOfWishlistItems)
     }
