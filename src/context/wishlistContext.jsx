@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export let wishlistContext = createContext()

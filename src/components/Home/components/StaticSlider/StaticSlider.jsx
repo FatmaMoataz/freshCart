@@ -1,4 +1,3 @@
-import React from 'react'
 import Slider from 'react-slick';
 import slide1 from '../../../../assets/images/slider-image-1.jpeg'
 import slide2 from '../../../../assets/images/slider-image-2.jpeg'

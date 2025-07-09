@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductItem from "../../../Shared/ProductItem/ProductItem";
 import { BounceLoader } from "react-spinners";
 import { cartContext } from "../../../../context/cartContext";

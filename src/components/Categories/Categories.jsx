@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SubCategories from './components/SubCategories';
 import { BounceLoader } from 'react-spinners';
 import { Helmet } from 'react-helmet';

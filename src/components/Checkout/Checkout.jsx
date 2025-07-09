@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { BounceLoader } from 'react-spinners';
 import * as Yup from 'yup';
 import { cartContext } from '../../context/cartContext';

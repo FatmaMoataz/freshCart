@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import EmailVerification from './components/EmailVerification/EmailVerification'
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import VerificationCode from './components/VerificationCode/VerificationCode'

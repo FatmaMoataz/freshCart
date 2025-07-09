@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { wishlistContext } from '../../context/wishlistContext'
 import { Helmet } from 'react-helmet';
 import { cartContext } from '../../context/cartContext';

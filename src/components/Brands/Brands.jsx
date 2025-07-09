@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BounceLoader } from 'react-spinners';
 import { Modal } from 'flowbite';
 import { Helmet } from 'react-helmet';

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { cartContext } from '../../context/cartContext';
 import { BounceLoader } from "react-spinners";
 import { Link } from 'react-router-dom';

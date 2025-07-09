@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { tokenContext } from "../../context/tokenContext";
@@ -6,32 +6,30 @@ import { cartContext } from "../../context/cartContext";
 
 export default function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
- 
-  let {token, setToken} = useContext(tokenContext)
-  let {numOfCartItems} = useContext(cartContext)
+
+  const { token, setToken } = useContext(tokenContext);
+  const { numOfCartItems } = useContext(cartContext);
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
-    setToken(null)
+    setToken(null);
     setIsModalOpen(false);
     navigate("/login");
   };
-  
-  
+
   return (
     <nav className="bg-[#f2f2f2] border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <div className="flex gap-3 items-center justify-between">
-          <Link className="flex items-center">
+        <div className="flex gap-3 items-center justify-between w-full md:w-auto">
+          <Link to="/" className="flex items-center">
             <img src={logo} width="200px" alt="FreshCart Logo" />
           </Link>
           <button
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 sm:justify-between text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none"
-            data-collapse-toggle="navbar-default"
-            aria-controls="navbar-default"
-            aria-expanded="false"
+            className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none"
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -50,62 +48,51 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <div className="hidden md:flex md:w-auto sm:py-7 md:py-0" id="navbar-default">
 
-          {token ?  <ul className="flex space-x-6">
-            <li>
-              <NavLink
-                to="home"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-                Home
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="products"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-                Products
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="categories"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-                Categories
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="brands"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-                Brands
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="cart"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-              <i class="fa-solid fa-cart-shopping fa-lg"></i><span className="px-1">{numOfCartItems}</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="wishlist"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-              <i class="fa-solid fa-heart fa-lg"></i>
-              </NavLink>
-            </li>
-          </ul>: ''}
-         
+        <div
+          className={`${
+            isMobileMenuOpen ? "block" : "hidden"
+          } md:flex md:w-auto sm:py-7 md:py-0 w-full mt-4 md:mt-0`}
+          id="navbar-default"
+        >
+          {token && (
+            <ul className="flex flex-col md:flex-row md:space-x-6">
+              <li>
+                <NavLink to="home" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="products" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
+                  Products
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="categories" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
+                  Categories
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="brands" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
+                  Brands
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="cart" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
+                  <i className="fa-solid fa-cart-shopping fa-lg"></i>
+                  <span className="px-1">{numOfCartItems}</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="wishlist" className="py-2 px-3 text-gray-900 dark:text-white nav-link">
+                  <i className="fa-solid fa-heart fa-lg"></i>
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </div>
-        <div className="flex gap-4 items-center">
+
+        <div className="flex gap-4 items-center mt-4 md:mt-0">
           <ul className="flex gap-3 text-gray-700 dark:text-gray-400">
             <li>
               <i className="fa-brands fa-instagram"></i>
@@ -127,30 +114,30 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="flex gap-3">
-
-{token ?  <li>
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="hover:text-red-600"
-              >
-                Logout
-              </button>
-            </li> : <>  <li>
-              <Link to="register" className="hover:text-main">
-                Register
-              </Link>
-            </li>
-            <li>
-              <Link to="login" className="hover:text-main">
-                Login
-              </Link>
-            </li></> }
-
-          
-           
+            {token ? (
+              <li>
+                <button onClick={() => setIsModalOpen(true)} className="hover:text-red-600">
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link to="register" className="hover:text-main">
+                    Register
+                  </Link>
+                </li>
+                <li>
+                  <Link to="login" className="hover:text-main">
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
+
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-10">
           <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg w-96">

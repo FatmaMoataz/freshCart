@@ -1,4 +1,3 @@
-import React from 'react'
 import app_store from '../../assets/images/app_store.png'
 import google_play from '../../assets/images/google_play.png'
 

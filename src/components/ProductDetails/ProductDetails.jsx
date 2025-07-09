@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { BounceLoader } from 'react-spinners';
 import RelatedProducts from './components/RelatedProducts/RelatedProducts';
